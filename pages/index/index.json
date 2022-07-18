@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "accept": "/pages/accept/accept",
+    "give": "/pages/give/give"
+  }
+}

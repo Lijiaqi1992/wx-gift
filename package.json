@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "vant-weapp": "^0.5.23",
+    "view-design": "^4.0.2"
+  }
+}

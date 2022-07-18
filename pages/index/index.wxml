@@ -1,0 +1,19 @@
+<accept wx:if="{{PageCur=='accept'}}"></accept>
+<give wx:if="{{PageCur=='give'}}"></give>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="accept">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/basics{{PageCur=='accept'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='accept'?'text-green':'text-gray'}}">收礼</view>
+  </view>
+
+  <view class="action" bindtap="NavChange" data-cur="give">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/plugin{{PageCur=='give'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='give'?'text-green':'text-gray'}}">送礼</view>
+  </view>
+</view>
