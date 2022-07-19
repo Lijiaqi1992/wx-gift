@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/home/home",
     "pages/logs/logs",
-    "pages/give"
+    "pages/give/give",
+    "pages/record/record"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",

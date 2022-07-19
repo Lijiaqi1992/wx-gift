@@ -1,12 +1,40 @@
-// pages/give.js
+// pages/record/record.js
+import http from '../../utils/http.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tab:[
+      {name : '全部', TabCur: 0},
+      {name : '收礼', TabCur: 1},
+      {name : '送礼', TabCur: 2},
+    ],
+    TabCur: 0,
+    scrollLeft:0, 
+    list:[]
   },
+  tabSelect(e) {
+    http.postRequest('/in/pageList', this.data,
+      (res) => {
+        console.log(res, '11111')
+        this.setData({
+          TabCur: e.currentTarget.dataset.id,
+          scrollLeft: (e.currentTarget.dataset.id-1)*60,
+          list: res.data.result
+        });
+      },
+      (res) => {
+        console.log(res, '2222')
+      }
+    )
+
+
+   
+
+  }, 
 
   /**
    * 生命周期函数--监听页面加载

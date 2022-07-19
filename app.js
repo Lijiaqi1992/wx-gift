@@ -1,17 +1,19 @@
 //app.js
 App({
-  onLaunch: function () { 
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  onLaunch: function () {
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let capsule = wx.getMenuButtonBoundingClientRect();
+        if (capsule) {
+          this.globalData.Custom = capsule;
+          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+        } else {
+          this.globalData.CustomBar = e.statusBarHeight + 50;
+        }
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -28,7 +30,7 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-            } 
+            }
           })
         }
       }
@@ -36,6 +38,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    $url:"http://127.0.0.1:6677"
+    $url: "http://127.0.0.1:6677"
   }
 })
