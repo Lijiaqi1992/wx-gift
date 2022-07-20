@@ -2,10 +2,9 @@
   <view slot="backText">返回</view>
   <view slot="content">记录</view>
 </cu-custom>
-
 <scroll-view scroll-x class="bg-white nav">
   <view class="flex text-center">
-    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key bindtap="tabSelect" id="{{index}}">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}">
       {{item.name}}
     </view>
   </view>

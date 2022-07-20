@@ -1,12 +1,27 @@
 // pages/record/record.js
 import http from '../../utils/http.js'
 
-Page({
+// pages/record/rrr.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+
+  },
+  lifetimes: {
+    // 生命周期函数，可以为函数，或一个在 methods 段中定义的方法名
+    attached: function () { 
+      this.getList('0');
+    },
+    moved: function () { },
+    detached: function () { },
+  },
 
   /**
-   * 页面的初始数据
+   * 组件的初始数据
    */
-  data: {
+  data:{
     tab:[
       {name : '全部', TabCur: 0},
       {name : '收礼', TabCur: 1},
@@ -16,89 +31,41 @@ Page({
     scrollLeft:0, 
     list:[]
   },
-  tabSelect(e) {
-    let url = "";
-    if(e.currentTarget.id == '1'){
-      //收礼
-      url = "/in/pageList";
-    }else if(e.currentTarget.id == '2'){
-      //送礼
-      url = "/out/pageList";
-    }else{
-      //全部
-      url = "/in/getAllList";
-    }
-    http.postRequest(url, this.data,
-      (res) => {
-        this.setData({
-          TabCur: e.currentTarget.id,
-          scrollLeft: (e.currentTarget.id-1)*60,
-          list: res.data.result
-        });
-      },
-      (res) => {
-        console.log(res, '2222')
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    tabSelect(e){
+      this.setData({
+        TabCur: e.currentTarget.id,
+        scrollLeft: (e.currentTarget.id-1)*60,
+      });
+      this.getList(e.currentTarget.id);
+    },
+
+    getList(type) {
+      let url = "";
+      if(type == '1'){
+        //收礼
+        url = "/in/pageList";
+      }else if(type == '2'){
+        //送礼
+        url = "/out/pageList";
+      }else{
+        //全部
+        url = "/in/getAllList";
       }
-    )
-
-
-   
-
-  }, 
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+      http.postRequest(url, this.data,
+        (res) => {
+          this.setData({
+            list: res.data.result
+          });
+        },
+        (res) => {
+          console.log(res, '2222')
+        }
+      )
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
