@@ -2,6 +2,7 @@
   "usingComponents": {
     "accept": "/pages/accept/accept",
     "give": "/pages/give/give",
-    "record": "/pages/record/record"
+    "record": "/pages/record/record",
+    "i-message": "../../iview/message/index"
   }
 }

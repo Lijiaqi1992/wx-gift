@@ -26,5 +26,5 @@
     </view>
     <view class="{{PageCur=='record'?'text-green':'text-gray'}}">记录</view>
   </view>
-
 </view>
+<i-message id="message"/>

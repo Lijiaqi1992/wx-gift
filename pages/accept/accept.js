@@ -1,6 +1,7 @@
 // pages/home/home.js
 import http from '../../utils/http.js'
 import util from '../../utils/util.js'
+const { $Message } = require('../../iview/base/index');
 const app = getApp()
 
 Page({
@@ -48,6 +49,10 @@ Page({
     http.postRequest('/in/create', this.data,
       (res) => {
         console.log(res, '11111')
+        $Message({
+          content: '这是一条普通提醒',
+          type: 'success'
+        });
       },
       (res) => {
         console.log(res, '2222')

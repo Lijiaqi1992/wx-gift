@@ -1,4 +1,7 @@
 {
   "enablePullDownRefresh":true,
-  "component": true
+  "component": true,
+  "usingComponents": {
+  
+  }
 }
