@@ -1,6 +1,6 @@
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">记录</view>
+<cu-custom bgColor="bg-gradual-redgreen" >
+  <!-- <view slot="backText">返回</view> -->
+  <!-- <view slot="content">记录</view> -->
 </cu-custom>
 <scroll-view scroll-x class="bg-white nav">
   <view class="flex text-center">
