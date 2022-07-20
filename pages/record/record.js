@@ -17,12 +17,22 @@ Page({
     list:[]
   },
   tabSelect(e) {
-    http.postRequest('/in/pageList', this.data,
+    let url = "";
+    if(e.currentTarget.id == '1'){
+      //收礼
+      url = "/in/pageList";
+    }else if(e.currentTarget.id == '2'){
+      //送礼
+      url = "/out/pageList";
+    }else{
+      //全部
+      url = "/in/getAllList";
+    }
+    http.postRequest(url, this.data,
       (res) => {
-        console.log(res, '11111')
         this.setData({
-          TabCur: e.currentTarget.dataset.id,
-          scrollLeft: (e.currentTarget.dataset.id-1)*60,
+          TabCur: e.currentTarget.id,
+          scrollLeft: (e.currentTarget.id-1)*60,
           list: res.data.result
         });
       },

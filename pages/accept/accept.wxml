@@ -16,6 +16,15 @@
     <view class="title">金额</view>
     <input  type="digit" model:value="{{inMoney}}" placeholder="我收到的"></input>
   </view>
+  <view class="cu-form-group">
+    <view class="title">日期</view>
+    <picker mode="date" model:value="{{inDate}}" start="2020-01-01" end="2050-12-31" bindchange="inDateChange">
+      <view class="picker">
+        {{inDate}}
+      </view>
+    </picker>
+  </view>
+
   <view class="cu-form-group margin-top">
     <view class="title">是否还礼</view>
     <switch bindchange="hlchange"></switch>

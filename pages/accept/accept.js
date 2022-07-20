@@ -11,6 +11,7 @@ Page({
     name: '',
     reason: '',
     inMoney: '',
+    inDate: util.formatDate(),
     returnMoney: '0',
     returnReason: '',
     note: '',
@@ -25,6 +26,12 @@ Page({
       returnDate: e.detail.value
     })
   },
+  inDateChange(e) {
+    this.setData({
+      inDate: e.detail.value
+    })
+  },
+
   hlchange(env) {
     this.setData({
       hl: env.detail.value
