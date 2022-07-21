@@ -70,9 +70,5 @@ Component({
         }
       )
     }
-    ,
-    onReachBottom(e){
-        console.log(11)
-    }
   },
 })
