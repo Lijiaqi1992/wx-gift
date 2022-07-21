@@ -24,6 +24,9 @@ Page({
     })
   },
   onLoad: function () {
+    wx.setBackgroundColor({
+      backgroundColor: '#1af3e2', // 窗口的背景色为白色
+    })
     //先不获取用户昵称
     //this.getUserInfo();
     wx.login({

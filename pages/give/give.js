@@ -86,6 +86,13 @@ Page({
       modalName: null
     })
   },
+  outMoneyCheck(e){
+    let val = e.detail.value;
+    val = util.notZeroStart(val);
+    this.setData({
+      outMoney : val.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
+    })
+  },
 
   create(c) {
     console.log(this.data);
@@ -93,10 +100,16 @@ Page({
 
     http.postRequest('/out/create', this.data,
       (res) => {
-        console.log(res, '11111')
+        wx.showToast({
+          title: '添加成功！',
+          icon: 'success'
+        })
       },
       (res) => {
-        console.log(res, '2222')
+        wx.showToast({
+          title: '添加失败！',
+          icon: 'error'
+        })
       }
     )
   },

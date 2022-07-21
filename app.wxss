@@ -2,7 +2,7 @@
 @import "colorui/icon.wxss";
 
 .scrollPage {
-  height: 100vh;
+  height: auto;
 }
 
 .nav-list {

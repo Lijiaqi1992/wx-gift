@@ -80,8 +80,9 @@ function request(url, params, method, onSuccess, onFailed, useToken) {
           // onFailed(""); //failure for other reasons
           console.log(error);
 
-          wx.showLoading({
+          wx.showToast({
               title: "网络连接失败",
+              icon: "error"
           });
       },
   });

@@ -22,7 +22,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const notZeroStart = val => {
+  if(val.length >= 2){
+    let f = val.slice(0,1);
+    let s = val.slice(1,2);
+    if(f == '0' && s != '.'){
+      val = val.slice(1);
+    }
+  }
+  return val;
+};
+
 module.exports = {
   formatTime: formatTime,
-  formatDate: formatDate
+  formatDate: formatDate,
+  notZeroStart: notZeroStart,
 }

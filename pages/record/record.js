@@ -13,6 +13,9 @@ Component({
     // 生命周期函数，可以为函数，或一个在 methods 段中定义的方法名
     attached: function () { 
       this.getList('0');
+      wx.setBackgroundColor({
+        backgroundColor: '#111111', // 窗口的背景色为白色
+      })
     },
     moved: function () { },
     detached: function () { },
@@ -66,6 +69,10 @@ Component({
           console.log(res, '2222')
         }
       )
+    }
+    ,
+    onReachBottom(e){
+        console.log(11)
     }
   },
 })
