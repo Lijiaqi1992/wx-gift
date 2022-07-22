@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+import http from '../../utils/http.js'
+
 const app = getApp()
 
 Page({
@@ -18,7 +20,7 @@ Page({
     })
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -30,15 +32,17 @@ Page({
     //先不获取用户昵称
     //this.getUserInfo();
     wx.login({
-      success : res=>{
+      success: res => {
         wx.request({
-          url: app.globalData.$url +"/auth/wx",
-          data: {'code': res.code, 'nickName': this.data.userInfo.nickName},
+          url: http.BaseUrl + "/auth/wx",
+          data: {
+            'code': res.code,
+            'nickName': this.data.userInfo.nickName
+          },
           method: 'POST',
-          success: succ=>{
-            console.log(succ);
+          success: succ => {
             wx.setStorage({
-              key:"token",
+              key: "token",
               data: succ.header.token
             })
           }
@@ -63,7 +67,6 @@ Page({
               })
             },
             fail: res => {
-              console.log(res)
               //拒绝授权
               wx.showToast({
                 title: '您拒绝了请求,不能正常使用小程序',
@@ -72,9 +75,7 @@ Page({
               });
               return;
             },
-            complete: cc=>{
-              console.log(90000);
-            }
+            complete: cc => {}
           });
         } else if (res.cancel) {
           //如果用户点击了取消按钮
@@ -87,5 +88,11 @@ Page({
         }
       }
     });
-  }
+  },
+  onReachBottom() {
+    let recordComp = this.selectComponent("#record");
+    if (recordComp) {
+      recordComp.getList(recordComp.data.TabCur);
+    }
+  },
 })

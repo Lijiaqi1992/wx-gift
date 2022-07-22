@@ -1,6 +1,6 @@
 // pages/record/record.js
 import http from '../../utils/http.js'
-
+const app = getApp()
 // pages/record/rrr.js
 Component({
   /**
@@ -11,62 +11,93 @@ Component({
   },
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在 methods 段中定义的方法名
-    attached: function () { 
+    attached: function () {
       this.getList('0');
       wx.setBackgroundColor({
         backgroundColor: '#111111', // 窗口的背景色为白色
       })
     },
-    moved: function () { },
-    detached: function () { },
+    moved: function () {},
+    detached: function () {},
   },
 
   /**
    * 组件的初始数据
    */
-  data:{
-    tab:[
-      {name : '全部', TabCur: 0},
-      {name : '收礼', TabCur: 1},
-      {name : '送礼', TabCur: 2},
+  data: {
+    tab: [{
+        name: '全部',
+        TabCur: 0
+      },
+      {
+        name: '收礼',
+        TabCur: 1
+      },
+      {
+        name: '送礼',
+        TabCur: 2
+      },
     ],
     TabCur: 0,
-    scrollLeft:0, 
-    list:[]
+    scrollLeft: 0,
+    list: [],
+    pageNo: 1,
+    pageSize: 10,
+    totalCount: 0
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    tabSelect(e){
-      this.setData({
-        TabCur: e.currentTarget.id,
-        scrollLeft: (e.currentTarget.id-1)*60,
-      });
+    tabSelect(e) {
+      // TabCur: e.currentTarget.id,
+      this.data.scrollLeft = (e.currentTarget.id - 1) * 60;
       this.getList(e.currentTarget.id);
     },
 
     getList(type) {
+      let _this = this
+
       let url = "";
-      if(type == '1'){
+      if (type == '1') {
         //收礼
         url = "/in/pageList";
-      }else if(type == '2'){
+      } else if (type == '2') {
         //送礼
         url = "/out/pageList";
-      }else{
+      } else {
         //全部
         url = "/in/getAllList";
       }
+      if (_this.data.TabCur == type) {
+        //判断页码防止多余请求
+        if (this.data.pageNo > 1 && this.data.pageNo * this.data.pageSize >= this.data.totalCount) {
+          return;
+        }
+      } else {
+        this.data.pageNo = 1;
+        this.setData({
+          list: []
+        })
+      }
       http.postRequest(url, this.data,
         (res) => {
+          let dataList = _this.data.list;
+          dataList = dataList.concat(res.data.result);
+          _this.data.pageNo++;
+          this.data.totalCount = res.data.totalCount
           this.setData({
-            list: res.data.result
+            list: dataList,
+            TabCur: type,
           });
         },
         (res) => {
-          console.log(res, '2222')
+          wx.showToast({
+            title: '查询失败',
+            icon: 'error',
+            size: 12
+          })
         }
       )
     }

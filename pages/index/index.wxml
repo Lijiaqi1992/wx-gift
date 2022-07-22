@@ -1,6 +1,6 @@
 <accept wx:if="{{PageCur=='accept'}}"></accept>
 <give wx:if="{{PageCur=='give'}}"></give>
-<record wx:if="{{PageCur=='record'}}"></record>
+<record wx:if="{{PageCur=='record'}}" id="record"></record>
 
 <view class="cu-bar tabbar bg-white shadow foot">
   <view class="action" bindtap="NavChange" data-cur="accept">

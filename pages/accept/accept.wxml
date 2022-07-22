@@ -1,13 +1,16 @@
-
 <scroll-view scroll-y class="scrollPage">
   <image src='/images/bf.jpg' mode='widthFix' class='png' style='width:100%;height:486rpx'></image>
   <view class="cu-form-group margin-top">
     <view class="title">姓名</view>
-    <input model:value="{{name}}" placeholder="请输入姓名" 	maxlength="20"></input>
+    <input model:value="{{name}}" placeholder="谁送给我的" maxlength="20"></input>
   </view>
   <view class="cu-form-group ">
     <view class="title">事由</view>
-    <input model:value="{{reason}}" placeholder="婚、乔" 	maxlength="100"></input>
+    <input model:value="{{reason}}" placeholder="如：婚礼" maxlength="100">
+    </input>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="婚礼">婚礼</view>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="生日">生日</view>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="乔迁">乔迁</view>
   </view>
   <view class="cu-form-group ">
     <view class="title">金额</view>
@@ -23,8 +26,8 @@
   </view>
 
   <view class="cu-form-group margin-top">
-    <view class="title">是否还礼</view>
-    <switch bindchange="hlchange"></switch>
+    <view class="title" >是否还礼</view>
+    <switch bindchange="hlchange" checked="{{hlswitch}}"></switch>
   </view>
 
   <view class="cu-form-group" wx:if="{{hl}}">
@@ -43,8 +46,8 @@
     <view class="title">还礼事由</view>
     <input placeholder="" model:value="{{returnReason}}" maxlength="100"></input>
   </view>
-  
-  <view class="cu-form-group margin-top" >
+
+  <view class="cu-form-group margin-top">
     <view class="title">备注</view>
     <input model:value="{{note}}" placeholder="" maxlength="500"></input>
   </view>

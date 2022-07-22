@@ -2,7 +2,7 @@ var header = {
   version: "1.0.0",
 };
 
-const BaseUrl = "http://127.0.0.1:6677"
+const BaseUrl = "http://www.lijiaqi.net.cn:7070"
 
 /**
  * 供外部get请求调用
@@ -91,5 +91,6 @@ function request(url, params, method, onSuccess, onFailed, useToken) {
 // 1.通过module.exports方式提供给外部调用
 module.exports = {
   postRequest: post,
-  getRequest: get
+  getRequest: get,
+  BaseUrl: BaseUrl
 };

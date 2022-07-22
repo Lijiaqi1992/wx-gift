@@ -2487,7 +2487,8 @@ button.icon.lg {
 	transform: scale(1);
 	overflow-x: hidden;
 	overflow-y: auto;
-	pointer-events: auto;
+  pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cu-dialog {

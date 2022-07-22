@@ -1,13 +1,16 @@
 <scroll-view scroll-y class="scrollPage">
-  <image src='/images/ct.gif'  class='response' style='width:100%;height:486rpx'></image>
+  <image src='/images/ct.gif' class='response' style='width:100%;height:486rpx'></image>
 
   <view class="cu-form-group margin-top">
     <view class="title">姓名</view>
-    <input model:value="{{name}}" bindinput="clearContact" placeholder="请输入姓名" maxlength="50"></input>
+    <input model:value="{{name}}" bindinput="clearContact" placeholder="我送给谁的" maxlength="50"></input>
   </view>
   <view class="cu-form-group ">
     <view class="title">事由</view>
-    <input model:value="{{reason}}" placeholder="婚、乔" maxlength="100"></input>
+    <input model:value="{{reason}}" placeholder="如：婚礼" maxlength="100"></input>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="婚礼">婚礼</view>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="生日">生日</view>
+    <view class="cu-tag line-pink" bindtap="quickWrite" id="乔迁">乔迁</view>
   </view>
   <view class="cu-form-group ">
     <view class="title">金额</view>
@@ -24,7 +27,8 @@
 
   <view class="cu-form-group margin-top">
     <view class="title">来往</view>
-    <view>{{showText_date}}</view>
+    <view>{{showText_date}} {{showText_reason !=""?"("+showText_reason+")":''}}</view>
+   
     <view class="text-red text-shadow">{{showText_money}}</view>
     <view class="action">
       <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="RadioModal">关联</button>
@@ -37,9 +41,9 @@
         <view class="cu-list menu text-left">
           <view class="cu-item" wx:for="{{slList}}" wx:key="key">
             <label class="flex justify-between align-center flex-sub">
-              <view class="flex-sub">{{item.name}} : {{item.inDate}}</view>
+              <view class="flex-sub">{{item.name}} : {{item.inDate}}（{{item.reason}}）</view>
               <view class="text-red text-shadow">￥{{item.inMoney}}</view>
-              <radio class="round" value="{{item.inDate}}|￥{{item.inMoney}}|{{item.inId}}"></radio>  
+              <radio class="round" value="{{item.inDate}}|￥{{item.inMoney}}|{{item.reason}}|{{item.inId}}"></radio>
             </label>
           </view>
         </view>
@@ -55,4 +59,3 @@
   </view>
   <view class='cu-tabbar-height'></view>
 </scroll-view>
-

@@ -12,14 +12,21 @@ Page({
     reason: '',
     inMoney: '',
     inDate: util.formatDate(),
-    returnMoney: '0',
+    returnMoney: 0,
     returnReason: '',
     note: '',
     returnDate: util.formatDate(),
-    hl: false, // 还礼？  
+    hl: false, // 还礼？
+    hlswitch: false,
     headers: {
       token: ''
-    } 
+    }
+  },
+
+  quickWrite(e) {
+    this.setData({
+      reason: e.target.id
+    })
   },
 
   DateChange(e) {
@@ -38,34 +45,46 @@ Page({
       hl: env.detail.value
     })
   },
-  inMoneyCheck(e){
+  inMoneyCheck(e) {
     let val = e.detail.value;
     val = util.notZeroStart(val);
     this.setData({
-      inMoney :val.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1'),
+      inMoney: val.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1'),
     })
   },
-  returnMoneyCheck(e){
+  returnMoneyCheck(e) {
     let val = e.detail.value;
     val = util.notZeroStart(val);
     this.setData({
-      returnMoney : val.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
+      returnMoney: val.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
     })
   },
-  
+
   create(c) {
-    console.log(this.data);
     if (!this.data.hl) {
       this.setData({
         returnMoney: '0',
         returnReason: ''
       })
     }
+    let _this = this
     http.postRequest('/in/create', this.data,
       (res) => {
         wx.showToast({
           title: '添加成功！',
           icon: 'success'
+        })
+        _this.setData({
+          name: '',
+          reason: '',
+          inMoney: '',
+          inDate: util.formatDate(),
+          returnMoney: 0,
+          returnReason: '',
+          note: '',
+          returnDate: util.formatDate(),
+          hl: false, // 还礼？ 
+          hlswitch: false
         })
       },
       (res) => {

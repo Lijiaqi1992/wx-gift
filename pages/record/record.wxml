@@ -1,6 +1,6 @@
-<cu-custom bgColor="bg-gradual-redgreen" >
+<cu-custom bgColor="bg-gradual-redgreen">
   <!-- <view slot="backText">返回</view> -->
-  <!-- <view slot="content">记录</view> -->
+   <view slot="content">小账本</view>
 </cu-custom>
 <view  class="bg-white nav">
   <view class="flex text-center">
@@ -9,7 +9,7 @@
     </view>
   </view>
 </view>
-<scroll-view scroll-y style="height:500rpx;" class="scrollPage">
+<scroll-view scroll-y class="scrollPage">
   <view class="" wx:for="{{list}}" wx:key="key">
     <view class="cu-card article">
       <view class="cu-item shadow {{item.type=='in'? 'bg-gradual-orange': 'bg-gradual-green'}}" >
