@@ -5,6 +5,7 @@ App({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
         let capsule = wx.getMenuButtonBoundingClientRect();
+        this.globalData.screenHeight = e.screenHeight;//屏幕高度
         if (capsule) {
           this.globalData.Custom = capsule;
           this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;

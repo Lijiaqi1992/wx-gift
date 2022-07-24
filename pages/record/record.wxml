@@ -9,7 +9,7 @@
     </view>
   </view>
 </view>
-<scroll-view scroll-y class="scrollPage">
+<scroll-view scroll-y class="scrollPage my-content" >
   <view class="" wx:for="{{list}}" wx:key="key">
     <view class="cu-card article">
       <view class="cu-item shadow {{item.type=='in'? 'bg-gradual-orange': 'bg-gradual-green'}}" >

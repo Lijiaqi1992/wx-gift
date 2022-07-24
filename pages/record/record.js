@@ -43,7 +43,8 @@ Component({
     list: [],
     pageNo: 1,
     pageSize: 10,
-    totalCount: 0
+    totalCount: 0,
+    screenHeight: app.globalData.screenHeight
   },
 
   /**
