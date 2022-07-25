@@ -50,6 +50,8 @@ Page({
       }
     })
   },
+  onShareTimeline(){},
+  onShareAppMessage(){},
   getUserInfo() {
     var _this = this
     wx.showModal({
