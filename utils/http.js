@@ -2,7 +2,7 @@ var header = {
   version: "1.0.0",
 };
 
-const BaseUrl = "http://www.lijiaqi.net.cn:7070"
+const BaseUrl = "https://www.lijiaqi.net.cn:7071"
 
 /**
  * 供外部get请求调用
