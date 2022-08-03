@@ -22,7 +22,7 @@
       <view class="picker">
         {{inDate}}
       </view>
-    </picker>
+    </picker> 
   </view>
 
   <view class="cu-form-group margin-top">

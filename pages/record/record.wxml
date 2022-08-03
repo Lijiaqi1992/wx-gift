@@ -1,33 +1,33 @@
 <cu-custom bgColor="bg-gradual-redgreen">
-  <!-- <view slot="backText">返回</view> -->
-   <view slot="content">小账本</view>
+    <!-- <view slot="backText">返回</view> -->
+    <view slot="content">小账本</view>
 </cu-custom>
-<view  class="bg-white nav">
-  <view class="flex text-center">
-    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}">
-      {{item.name}}
+<view class="bg-white nav">
+    <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}">
+            {{item.name}}
+        </view>
     </view>
-  </view>
 </view>
-<scroll-view scroll-y class="scrollPage my-content" >
-  <view class="" wx:for="{{list}}" wx:key="key">
-    <view class="cu-card article">
-      <view class="cu-item shadow {{item.type=='in'? 'bg-gradual-orange': 'bg-gradual-green'}}" >
-        <view class="title">
-          <view class="text-cut text-white">{{item.name}} ({{item.reason}})</view>
+<scroll-view scroll-y class="scrollPage ">
+    <view class="" wx:for="{{list}}" wx:key="key">
+        <view class="cu-card article" bindlongpress="delete" id="{{item.id}}" data-type="{{item.type}}" data-index="{{index}}">
+            <view class="cu-item shadow {{item.type=='in'? 'bg-gradual-orange': 'bg-gradual-green'}}">
+                <view class="title">
+                    <view class="text-cut text-white">{{item.name}} ({{item.reason}})</view>
+                </view>
+                <view class="content">
+                    <view class="desc align-end" wx:if="{{item.type=='in'}}">
+                        <view><text class="text-left  ">{{item.inDate}}{{item.edate}}</text></view>
+                        <view><text class="text-price text-right text-xxl">{{item.inMoney}}{{item.money}}</text></view>
+                    </view>
+                    <view class="desc align-end" wx:if="{{item.type=='out'}}">
+                        <view><text class="text-left  ">{{item.outDate}}{{item.edate}}</text></view>
+                        <view><text class="text-price text-right text-xxl">{{item.outMoney}}{{item.money}}</text></view>
+                    </view>
+                </view>
+            </view>
         </view>
-        <view class="content">
-          <view class="desc align-end" wx:if="{{item.type=='in'}}">
-            <view><text class="text-left  ">{{item.inDate}}{{item.edate}}</text></view>
-            <view><text class="text-price text-right text-xxl">{{item.inMoney}}{{item.money}}</text></view>
-          </view>
-          <view class="desc align-end" wx:if="{{item.type=='out'}}">
-            <view><text class="text-left  ">{{item.outDate}}{{item.edate}}</text></view>
-            <view><text class="text-price text-right text-xxl">{{item.outMoney}}{{item.money}}</text></view>
-          </view>
 
-        </view>
-      </view>
     </view>
-  </view>
 </scroll-view>
