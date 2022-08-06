@@ -93,9 +93,7 @@ Page({
     },
     onReachBottom() {
         let recordComp = this.selectComponent("#record");
-        console.log(recordComp);
         if (recordComp) {
-            console.log(0);
             recordComp.getList(recordComp.data.TabCur);
         }
     },

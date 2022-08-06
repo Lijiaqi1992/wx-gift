@@ -30,4 +30,11 @@
         </view>
 
     </view>
+    <view class="cu-card">
+        <view class="card-blank-height">
+            <view class="loadmore">
+            <text wx:if="{{noData==false}}">到底啦~</text>
+            <text wx:if="{{noData}}">还没有与他人有来往呦~</text></view>
+        </view>
+    </view>
 </scroll-view>

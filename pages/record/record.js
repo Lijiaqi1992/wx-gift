@@ -42,8 +42,9 @@ Component({
         scrollLeft: 0,
         list: [],
         pageNo: 1,
-        pageSize: 10,
+        pageSize: 7,
         totalCount: 0,
+        noData: true, //列表没有数据
         screenHeight: app.globalData.screenHeight
     },
 
@@ -53,13 +54,10 @@ Component({
     methods: {
         tabSelect(e) {
             // TabCur: e.currentTarget.id,
-            console.log(22);
-            console.log(e);
             this.data.scrollLeft = (e.currentTarget.id - 1) * 60;
             this.getList(e.currentTarget.id);
         },
         delete(obj) {
-            console.log(obj);
             let _this = this
             wx.showModal({
                 title: '提示',
@@ -73,7 +71,6 @@ Component({
         },
 
         delData(type, id, index) {
-            console.log(type,id, index);
             let _this = this
             let url = "";
             if (type == 'in') {
@@ -102,7 +99,6 @@ Component({
         },
 
         getList(type) {
-            console.log("listtttttttttt");
             let _this = this
             let url = "";
             if (type == '1') {
@@ -115,13 +111,16 @@ Component({
                 //全部
                 url = "/in/getAllList";
             }
-            console.log(_this.data,  type);
             if (_this.data.TabCur == type) {
                 //判断页码防止多余请求
-                if (this.data.pageNo > 1 && this.data.pageNo * this.data.pageSize >= this.data.totalCount) {
-                    console.log("ssssssssssssssss");
+                console.log("===>", this.data.pageNo, this.data.pageSize, this.data.totalCount)
+                if (_this.data.pageNo > 1 && (_this.data.pageNo - 1) * _this.data.pageSize >= _this.data.totalCount) {
+                    this.setData({
+                        noMore: true
+                    })
                     return;
                 }
+
             } else {
                 this.data.pageNo = 1;
                 this.setData({
@@ -132,11 +131,12 @@ Component({
                 (res) => {
                     let dataList = _this.data.list;
                     dataList = dataList.concat(res.data.result);
-                    _this.data.pageNo++;
                     this.data.totalCount = res.data.totalCount
                     this.setData({
+                        noData: dataList.length == 0,
                         list: dataList,
                         TabCur: type,
+                        pageNo: _this.data.pageNo + 1
                     });
                 },
                 (res) => {
