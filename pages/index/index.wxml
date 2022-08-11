@@ -1,6 +1,7 @@
 <accept wx:if="{{PageCur=='accept'}}"></accept>
 <give wx:if="{{PageCur=='give'}}"></give>
 <record wx:if="{{PageCur=='record'}}" id="record"></record>
+<analysis wx:if="{{PageCur=='analysis'}}" id="analysis"></analysis>
 
 <view class="cu-bar tabbar bg-white shadow foot">
   <view class="action" bindtap="NavChange" data-cur="accept">
@@ -26,5 +27,12 @@
     </view>
     <view class="{{PageCur=='record'?'text-green':'text-gray'}}">记录</view>
   </view>
+
+  <view class="action" bindtap="NavChange" data-cur="analysis">
+    <view class='cuIcon-cu-image'>
+      <!-- <image src="/images/tabbar/plugin{{PageCur=='record'?'_cur':''}}.png"></image> -->
+      <text class="cuIcon-album {{PageCur=='analysis'?'text-green':'text-gray'}} "></text>
+    </view>
+    <view class="{{PageCur=='analysis'?'text-green':'text-gray'}}">分析</view>
+  </view>
 </view>
-<i-message id="message"/>

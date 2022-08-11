@@ -1,0 +1,44 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <image src="" class="png" mode="widthFix"></image>
+    <view class="text-xl">ColorUI组件库
+      <text class="text-df">v2.0</text>
+    </view>
+    <view class="margin-top-sm">
+      <text>By:文晓港</text>
+    </view>
+    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">111</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attentionfill"></text> View
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">222</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favorfill"></text> Star
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">333</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-fork"></text> Fork
+      </view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view>
+  <canvas canvas-id="myChart" type="2d" width="400" height="400"></canvas>
+  </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
