@@ -30,9 +30,6 @@
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-  <view>
-  <canvas canvas-id="myChart" type="2d" width="400" height="400"></canvas>
-  </view>
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
         <text class="cuIcon-writefill text-cyan"></text>
