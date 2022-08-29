@@ -1533,6 +1533,24 @@ button.icon.lg {
     border-radius: 20rpx
 }
 
+.chat-margin{
+    overflow: hidden;
+    margin-right: 30rpx;
+    margin-left: 30rpx;
+    margin-top: 3rpx;
+    border-radius: 20rpx;
+}
+.chat-height{
+    height: 40vh;
+    width: 92vw;
+}
+.chat-title{
+    margin-top: 30rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    /* width: 80vw; */
+}
+
 
 /* ==================
           操作条
