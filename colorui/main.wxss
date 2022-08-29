@@ -15,6 +15,7 @@ page {
     /* 标准色 */
     --red: #e54d42;
     --orange: #f37b1d;
+    --orange1: #ffc170;
     --yellow: #fbbd08;
     --olive: #8dc63f;
     --green: #39b54a;
@@ -3481,6 +3482,11 @@ scroll-view.cu-steps .cu-item {
 .bg-orange {
     background-color: var(--orange);
     color: var(--white);
+}
+
+.bg-orange1 {
+  background-color: var(--orange1);
+  color: var(--darkGray);
 }
 
 .bg-yellow {
