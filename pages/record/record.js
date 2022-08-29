@@ -83,14 +83,12 @@ Component({
             let param = { 'ids': [id] }
             http.postRequest(url, param,
                 (res) => {
-                    console.log('succ')
                     _this.data.list.splice(index, 1);
                     _this.setData({
                         list: _this.data.list
                     })
                 },
                 (err) => {
-                    console.log(err)
                     wx.showToast({
                         title: '删除失败！',
                         icon: 'error'

@@ -1536,10 +1536,10 @@ button.icon.lg {
 
 .chat-margin{
     overflow: hidden;
-    margin-right: 30rpx;
+    margin-right: 20rpx;
     margin-left: 30rpx;
     margin-top: 3rpx;
-    border-radius: 20rpx;
+    /*border-radius: 20rpx;*/
 }
 .chat-height{
     height: 40vh;
@@ -1548,7 +1548,7 @@ button.icon.lg {
 .chat-title{
     margin-top: 30rpx;
     margin-left: 30rpx;
-    margin-right: 30rpx;
+    margin-right: 33rpx;
     /* width: 80vw; */
 }
 

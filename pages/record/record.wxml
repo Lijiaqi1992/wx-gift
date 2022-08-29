@@ -2,7 +2,8 @@
     <!-- <view slot="backText">返回</view> -->
     <view slot="content">小账本</view>
 </cu-custom>
-
+<view class="bg-orange1 text-center">长按可删除记录</view>
+ 
 <view class="bg-white nav">
     <view class="flex text-center">
         <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}">

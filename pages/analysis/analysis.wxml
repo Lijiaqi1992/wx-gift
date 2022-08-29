@@ -1,37 +1,33 @@
 <scroll-view scroll-y class="scrollPage">
-    <view class="UCenter-bg">
-        <image src="" class="png" mode="widthFix"></image>
-        <view class="text-xl">ColorUI组件库
-            <text class="text-df">v2.0</text>
-        </view>
-        <view class="margin-top-sm">
-            <text>By:文晓港</text>
-        </view>
-    </view>
+  <cu-custom bgColor="bg-gradual-redgreen">
+    <!-- <view slot="backText">返回</view> -->
+    <view slot="content">礼金分析</view>
+</cu-custom>
+ 
     <view class="padding flex text-center text-grey bg-white shadow-warp">
         <view class="flex flex-sub flex-direction solid-right">
-            <view class="text-xxl text-orange">111</view>
+            <view class="text-xxl text-orange">{{statistics.inMoneyCount}}</view>
             <view class="margin-top-sm">
-                <text class="cuIcon-attentionfill"></text> View
+                <text class=""></text> 收礼
             </view>
         </view>
         <view class="flex flex-sub flex-direction solid-right">
-            <view class="text-xxl text-blue">222</view>
+            <view class="text-xxl text-green">{{statistics.outMoneyCount}}</view>
             <view class="margin-top-sm">
-                <text class="cuIcon-favorfill"></text> Star
+                <text class=""></text> 送礼
             </view>
         </view>
         <view class="flex flex-sub flex-direction">
-            <view class="text-xxl text-green">333</view>
+            <view class="text-xxl text-blue">{{statistics.diff}}</view>
             <view class="margin-top-sm">
-                <text class="cuIcon-fork"></text> Fork
+                <text class=""></text> 差额
             </view>
         </view>
     </view>
 
     <view class="bg-white nav chat-title">
         <view class="flex text-center">
-            <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}">
+            <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tab}}" wx:key="k" bindtap="tabSelect" id="{{index}}"> 
                 {{item.name}}
             </view>
         </view>
