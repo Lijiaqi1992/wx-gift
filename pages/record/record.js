@@ -138,6 +138,7 @@ Component({
                     });
                 },
                 (res) => {
+                  console.log("---------------=-");
                     wx.showToast({
                         title: '查询失败',
                         icon: 'error',

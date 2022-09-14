@@ -1,7 +1,6 @@
 var header = {
   version: "1.0.0",
 };
-
 const BaseUrl = "https://www.lijiaqi.net.cn:7071"
 //const BaseUrl = "http://127.0.0.1:7070"
 /**
@@ -11,7 +10,7 @@ function get(url, params, onSuccess, onFailed, useToken) {
   // console.log("请求方式：", "GET");
   request(url, params, "GET", onSuccess, onFailed, useToken);
 }
- /**
+/**
  * 供外部post请求调用
  */
 function post(url, params, onSuccess, onFailed, useToken) {
@@ -42,8 +41,8 @@ function request(url, params, method, onSuccess, onFailed, useToken) {
 
   // 读本地缓存
   useToken == null || useToken == "undefined" ?
-      (header["token"] = wx.getStorageSync("token")):
-      delete header.token; //wx.getStorageSync("token")
+    (header["token"] = wx.getStorageSync("token")) :
+    delete header.token; //wx.getStorageSync("token")
 
   // 读全局的globalData
   //  useToken == null || useToken == "undefined" ?
@@ -51,46 +50,72 @@ function request(url, params, method, onSuccess, onFailed, useToken) {
   //   delete header.Authorization;
 
   wx.showLoading({
-      title: "正在加载中...",
+    title: "正在加载中...",
   });
   // console.log("请求头：", header);
   wx.request({
-      url: BaseUrl + url,
-      data: dealParams(params),
-      method: method,
-      header: header,
-      success: function (res) {
-          wx.hideLoading();
-          console.log("响应：", res);
-          if (res.data) {
-              /** start 根据需求 接口的返回状态码进行处理 */
-              if (res.statusCode == 200) {
-                  if(res.data.code == 0){
-                    onSuccess(res.data); //request success
-                  }else{
-                    onFailed(res.data.message); //request failed
-                  }                  
-              } else {
-                  onFailed(res.data.message); //request failed
-              }
-              /** end 处理结束*/
-          }
-      },
-      fail: function (error) {
-          // onFailed(""); //failure for other reasons
-          console.log(error);
+    url: BaseUrl + url,
+    data: dealParams(params),
+    method: method,
+    header: header,
+    success: function (res) {
+      wx.hideLoading();
+      console.log("响应：", res);
+      if (res.statusCode == 200) {
+        if (res.data.code == 0) {
+          onSuccess(res.data); //request success
+        } else {
+          onFailed(res.data.message); //request failed
+        }
+      } else if (res.statusCode == 401) {
+        login();
+        // onFailed(res.data.message); //request failed
+      } else {
+        onFailed(res.data.message); //request failed
+      }
+    },
+    fail: function (error) {
+      // onFailed(""); //failure for other reasons
+      console.log(error);
 
-          wx.showToast({
-              title: "网络连接失败",
-              icon: "error"
-          });
-      },
+      wx.showToast({
+        title: "网络连接失败",
+        icon: "error"
+      });
+    },
   });
+}
+
+function login() {
+  wx.setBackgroundColor({
+    backgroundColor: '#1af3e2', // 窗口的背景色为白色
+  })
+  //先不获取用户昵称
+  //this.getUserInfo();
+  wx.login({
+    success: res => {
+      wx.request({
+        url: BaseUrl + "/auth/wx",
+        data: {
+          'code': res.code,
+          //  'nickName': this.data.userInfo.nickName
+        },
+        method: 'POST',
+        success: succ => {
+          wx.setStorage({
+            key: "token",
+            data: succ.header.token
+          })
+        }
+      })
+    }
+  })
 }
 
 // 1.通过module.exports方式提供给外部调用
 module.exports = {
   postRequest: post,
   getRequest: get,
-  BaseUrl: BaseUrl
+  BaseUrl: BaseUrl,
+  login: login
 };
