@@ -20,6 +20,14 @@ Component({
         recordComp.getList(recordComp.data.TabCur);
       }
     },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {},
+     /**
+     * 用户点击右上角分享到朋友圈
+     */
+    onShareTimeline(){},
     NavChange(e) {
       this.setData({
         PageCur: e.currentTarget.dataset.cur
