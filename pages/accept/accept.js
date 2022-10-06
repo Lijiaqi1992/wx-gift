@@ -10,7 +10,7 @@ Page({
   data: {
     name: '',
     reason: '',
-    inMoney: '',
+    inMoney: '0',
     inDate: util.formatDate(),
     returnMoney: 0,
     returnReason: '',
@@ -67,6 +67,13 @@ Page({
         returnReason: ''
       })
     }
+    if(this.data.name==''){
+      wx.showToast({
+        title: '请填写姓名！',
+        icon: 'error'
+      })
+      return;
+    }
     let _this = this
     http.postRequest('/in/create', this.data,
       (res) => {
@@ -77,8 +84,8 @@ Page({
         _this.setData({
           name: '',
           reason: '',
-          inMoney: '',
-          inDate: util.formatDate(),
+          inMoney: '0',
+          // inDate: util.formatDate(),
           returnMoney: 0,
           returnReason: '',
           note: '',

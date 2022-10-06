@@ -10,7 +10,7 @@ Page({
     outDate: util.formatDate(),
     name: '',
     reason: '',
-    outMoney: '',
+    outMoney: '0',
     note: '',
     modalName: '',
     slList: [],
@@ -105,6 +105,13 @@ Page({
   },
 
   create(c) {
+    if(this.data.name==''){
+      wx.showToast({
+        title: '请填写姓名！',
+        icon: 'error'
+      })
+      return;
+    }
     let _this = this
     http.postRequest('/out/create', this.data,
       (res) => {
@@ -113,7 +120,7 @@ Page({
           icon: 'success'
         })
         _this.setData({
-          outDate: util.formatDate(),
+          //outDate: util.formatDate(),
           name: '',
           reason: '',
           outMoney: '',
